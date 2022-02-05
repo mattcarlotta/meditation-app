@@ -59,7 +59,7 @@ function setDisplayTime(time) {
 }
 
 /**
- * Subtracts the selected time from the player's time to update the time display and determine if the players needs to be reset
+ * Subtracts the selected time from the player's time to update the time display and determines if the player needs to be reset
  *
  * - Updates the time displays content with 'xx:xx'
  * - Determines if the time left is greater than 0, otherwise resets the player

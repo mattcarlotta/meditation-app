@@ -47,12 +47,9 @@ function updateTime(time) {
   let displayMins = Math.floor(time / 60);
   let displaySeconds = Math.floor(time % 60);
 
-  if (displayMins < 10) {
-    displayMins = "0" + displayMins;
-  }
-  if (displaySeconds < 10) {
-    displaySeconds = "0" + displaySeconds;
-  }
+  if (displayMins < 10) displayMins = "0" + displayMins;
+  if (displaySeconds < 10) displaySeconds = "0" + displaySeconds;
+
   timeDisplay.innerHTML = `${displayMins}:${displaySeconds}`;
 }
 
@@ -75,8 +72,8 @@ audioSound.ontimeupdate = () => {
 };
 
 /**
- * Listens for clicks and based upon the click 'action', it'll either...
- * - Select a song source, enable the player buttons, and play the song
+ * Listens for clicks and based upon the click 'action'...
+ * - Selects a song source, enable the player buttons, and play the song
  * - Toggles the song playing based upon its current state: paused/playing
  * - Resets the player, resets the time display, and disables player buttons
  * - Updates the time display and resets the player's time
@@ -93,11 +90,8 @@ document.addEventListener("click", (event) => {
       break;
     }
     case "toggle-sound": {
-      if (audioSound.paused) {
-        playSound();
-      } else {
-        pauseSound();
-      }
+      if (audioSound.paused) playSound();
+      else pauseSound();
       break;
     }
     case "reset-sound": {

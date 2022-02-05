@@ -34,7 +34,6 @@ function playSound() {
  *
  * - Pauses the audio source
  * - Sets the sound button's content to 'RESUME'
- * - Displays the reset button
  */
 function pauseSound() {
   audioSource.pause();

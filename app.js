@@ -1,8 +1,8 @@
 const audioButton = document.querySelector(".audio-button");
 const audioSource = document.querySelector(".audio-source");
 const resetButton = document.querySelector(".reset-button");
-const songName = document.querySelector(".song-name");
 const selectMinutes = document.getElementById("minutes");
+const soundName = document.querySelector(".sound-name");
 const timeDisplay = document.querySelector(".timer-display");
 
 /**
@@ -90,9 +90,9 @@ document.addEventListener("click", (event) => {
       alert("Please select a sound to play...");
       break;
     }
-    case "select-song": {
+    case "select-sound": {
       audioSource.src = source;
-      songName.textContent = name;
+      soundName.textContent = name;
       audioButton.classList.remove("disabled");
       playSound();
       break;
@@ -110,7 +110,7 @@ document.addEventListener("click", (event) => {
       audioButton.dataset.action = "disabled";
       audioButton.textContent = "START";
       resetButton.style.display = "none";
-      songName.textContent = "Please select a sound...";
+      soundName.textContent = "Please select a sound...";
       break;
     }
     case "set-time": {

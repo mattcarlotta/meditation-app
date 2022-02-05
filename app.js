@@ -16,7 +16,7 @@ let selectedDuration = 60;
 selectMinutes.selectedIndex = 0;
 
 /**
- * Plays the currently selected song
+ * Plays the currently selected sound
  *
  * - Initialize the audio source
  * - Resets the sound button's action to 'toggle-sound' and content to 'PAUSE'
@@ -30,10 +30,10 @@ function playSound() {
 }
 
 /**
- * Pauses the currently selected song
+ * Pauses the currently selected sound
  *
  * - Pauses the audio source
- * - Sets the sound button's content to 'RESUME'
+ * - Sets the audio button's content to 'RESUME'
  */
 function pauseSound() {
   audioSource.pause();
@@ -41,7 +41,7 @@ function pauseSound() {
 }
 
 /**
- * Subtracts the minutes and seconds of the song duration to display a counter
+ * Subtracts the minutes and seconds of the sound duration to display a counter
  *
  * - Divides the minutes by 60 to determine if its less than 10:00 => 09:00
  * - Mods the seconds to determine if it has a remainder less than 00:10 => 00:09
@@ -76,8 +76,9 @@ audioSource.ontimeupdate = () => {
 /**
  * Listens for clicks and based upon the click 'action'...
  *
- * - Selects a song source, enables the player buttons, and plays the song
- * - Toggles the song playing based upon its current state: paused/playing
+ * - Alerts the user to select a sound when the audio button is disabled
+ * - Selects a sound source, enables the player buttons, and plays the sound
+ * - Toggles the sound playing based upon its current state: paused/playing
  * - Resets the player, resets the time display, and disables player buttons
  * - Updates the time display and resets the player's time
  */

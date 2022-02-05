@@ -25,7 +25,7 @@ selectMinutes.selectedIndex = 0;
 function playSound() {
   audioSource.play();
   audioButton.dataset.action = "toggle-sound";
-  audioButton.innerHTML = "PAUSE";
+  audioButton.textContent = "PAUSE";
   resetButton.style.display = "block";
 }
 
@@ -37,7 +37,7 @@ function playSound() {
  */
 function pauseSound() {
   audioSource.pause();
-  audioButton.innerHTML = "RESUME";
+  audioButton.textContent = "RESUME";
 }
 
 /**
@@ -54,7 +54,7 @@ function setDisplayTime(time) {
   if (displayMins < 10) displayMins = "0" + displayMins;
   if (displaySeconds < 10) displaySeconds = "0" + displaySeconds;
 
-  timeDisplay.innerHTML = `${displayMins}:${displaySeconds}`;
+  timeDisplay.textContent = `${displayMins}:${displaySeconds}`;
 }
 
 /**
@@ -69,7 +69,7 @@ audioSource.ontimeupdate = () => {
   if (audioSource.currentTime + 1 > selectedDuration) {
     audioSource.pause();
     audioSource.currentTime = 0;
-    audioButton.innerHTML = "START";
+    audioButton.textContent = "START";
   }
 };
 
@@ -92,7 +92,7 @@ document.addEventListener("click", (event) => {
     }
     case "select-song": {
       audioSource.src = source;
-      songName.innerHTML = name;
+      songName.textContent = name;
       audioButton.classList.remove("disabled");
       playSound();
       break;
@@ -108,9 +108,9 @@ document.addEventListener("click", (event) => {
       setDisplayTime(selectedDuration);
       audioButton.classList.add("disabled");
       audioButton.dataset.action = "disabled";
-      audioButton.innerHTML = "START";
+      audioButton.textContent = "START";
       resetButton.style.display = "none";
-      songName.innerHTML = "Please select a sound...";
+      songName.textContent = "Please select a sound...";
       break;
     }
     case "set-time": {

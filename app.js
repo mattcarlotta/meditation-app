@@ -45,7 +45,7 @@ function pauseSound() {
  *
  * - Divides the minutes by 60 to determine if its less than 10:00 => 09:00
  * - Mods the seconds to determine if it has a remainder less than 00:10 => 00:09
- * - Updates the time displays content with 'xx:xx'
+ * - Updates the time display with 'xx:xx'
  */
 function setDisplayTime(time) {
   let displayMins = Math.floor(time / 60);

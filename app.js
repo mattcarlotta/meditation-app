@@ -2,7 +2,6 @@ const soundButton = document.querySelector(".sound-button");
 const resetButton = document.querySelector(".reset-button");
 const audioSound = document.querySelector(".audio");
 const songName = document.querySelector(".song-name");
-const selectMinutes = document.getElementById("minutes");
 const timeDisplay = document.querySelector(".timer-display");
 
 /**

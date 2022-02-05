@@ -109,13 +109,13 @@ img.icon {
   background-color: #3e3e40;
 }
 
-.sound-button.disabled {
+.audio-button.disabled {
   cursor: not-allowed;
   background-color: #ccc;
   color: #ebebeb;
 }
 
-.sound-button,
+.audio-button,
 .reset-button {
   background-color: #707369;
   color: white;

@@ -1,17 +1,17 @@
-const soundButton = document.querySelector(".sound-button");
+const audioButton = document.querySelector(".audio-button");
+const audioSource = document.querySelector(".audio-source");
 const resetButton = document.querySelector(".reset-button");
-const audioSound = document.querySelector(".audio");
 const songName = document.querySelector(".song-name");
 const selectMinutes = document.getElementById("minutes");
 const timeDisplay = document.querySelector(".timer-display");
 
 /**
- * Initial global value to keep track of the selected time duration
+ * Initial global selected value in seconds
  */
-let globalTimeInSeconds = 60;
+let selectedDuration = 60;
 
 /**
- * Initial selected time
+ * Initial selected time (needed for resetting the selected index upon page refresh)
  */
 selectMinutes.selectedIndex = 0;
 
@@ -23,9 +23,9 @@ selectMinutes.selectedIndex = 0;
  * - Displays the reset button
  */
 function playSound() {
-  audioSound.play();
-  soundButton.dataset.action = "toggle-sound";
-  soundButton.innerHTML = "PAUSE";
+  audioSource.play();
+  audioButton.dataset.action = "toggle-sound";
+  audioButton.innerHTML = "PAUSE";
   resetButton.style.display = "block";
 }
 
@@ -37,8 +37,8 @@ function playSound() {
  * - Displays the reset button
  */
 function pauseSound() {
-  audioSound.pause();
-  soundButton.innerHTML = "RESUME";
+  audioSource.pause();
+  audioButton.innerHTML = "RESUME";
 }
 
 /**
@@ -48,7 +48,7 @@ function pauseSound() {
  * - Mods the seconds to determine if it has a remainder less than '10'
  * - Updates the time displays content with 'xx:xx'
  */
-function updateTime(time) {
+function setDisplayTime(time) {
   let displayMins = Math.floor(time / 60);
   let displaySeconds = Math.floor(time % 60);
 
@@ -64,15 +64,15 @@ function updateTime(time) {
  * - Updates the time displays content with 'xx:xx'
  * - Determines if the time left is greater than 0, otherwise resets the player
  */
-audioSound.ontimeupdate = () => {
-  const { currentTime } = audioSound;
+audioSource.ontimeupdate = () => {
+  const { currentTime } = audioSource;
 
-  updateTime(globalTimeInSeconds - currentTime);
+  setDisplayTime(selectedDuration - currentTime);
 
-  if (currentTime + 1 > globalTimeInSeconds) {
-    audioSound.pause();
-    audioSound.currentTime = 0;
-    soundButton.innerHTML = "START";
+  if (currentTime + 1 > selectedDuration) {
+    audioSource.pause();
+    audioSource.currentTime = 0;
+    audioButton.innerHTML = "START";
   }
 };
 
@@ -84,35 +84,35 @@ audioSound.ontimeupdate = () => {
  * - Updates the time display and resets the player's time
  */
 document.addEventListener("click", (event) => {
-  const { action, sound, name, value } = event.target.dataset;
+  const { action, name, source, value } = event.target.dataset;
 
   switch (action) {
     case "select-song": {
-      audioSound.src = sound;
+      audioSource.src = source;
       songName.innerHTML = name;
-      soundButton.classList.remove("disabled");
+      audioButton.classList.remove("disabled");
       playSound();
       break;
     }
     case "toggle-sound": {
-      if (audioSound.paused) playSound();
+      if (audioSource.paused) playSound();
       else pauseSound();
       break;
     }
     case "reset-sound": {
       pauseSound();
-      audioSound.currentTime = 0;
-      updateTime(globalTimeInSeconds);
-      soundButton.classList.add("disabled");
-      soundButton.dataset.action = "";
+      audioSource.currentTime = 0;
+      setDisplayTime(selectedDuration);
+      audioButton.classList.add("disabled");
+      audioButton.dataset.action = "";
       resetButton.style.display = "none";
       songName.innerHTML = "Please select a song...";
       break;
     }
     case "set-time": {
-      audioSound.currentTime = 0;
-      globalTimeInSeconds = Number(value * 60);
-      updateTime(globalTimeInSeconds);
+      audioSource.currentTime = 0;
+      selectedDuration = Number(value * 60);
+      setDisplayTime(selectedDuration);
       break;
     }
     default:

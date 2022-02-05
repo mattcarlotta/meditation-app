@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Orbitron&display=swap"
+      rel="stylesheet"
+    />
+    <title>Mindful Meditation</title>
+  </head>
+
+  <body>
+    <div class="app">
+      <div class="session-container">
+        <img src="./images/meditation.jpg" class="meditation-img" />
+        <div class="time-container">
+          <div class="countdown-container">
+            <p class="timer-display">01:00</p>
+          </div>
+          <div class="selected-song-container">
+            <img
+              src="./images/music-note.png"
+              class="icon"
+              width="20"
+              height="20"
+            />
+            <p class="song-name">Please select a song...</p>
+          </div>
+          <button data-action="" class="sound-button disabled">START</button>
+          <button data-action="reset-sound" class="reset-button">RESET</button>
+        </div>
+      </div>
+      <div class="preferences-container">
+        <h1>MINDFUL MEDITATION</h1>
+        <h3>In the comfort of your own home.</h3>
+        <audio class="audio">
+          <source src="./sounds/summer-breeze.mp3" />
+        </audio>
+        <!-- sounds -->
+        <h4 class="preferences">PREFERENCES</h4>
+        <h4 class="select-title">
+          <img
+            src="./images/sound.png"
+            width="20"
+            height="20"
+            class="icon"
+          />Select your sound
+        </h4>
+        <button
+          class="audio-btn"
+          data-action="select-song"
+          data-sound="./sounds/summer-breeze.mp3"
+          data-name="Summer Breeze"
+        >
+          Summer Breeze
+        </button>
+        <button
+          class="audio-btn"
+          data-action="select-song"
+          data-sound="./sounds/simply-meditation-series.mp3"
+          data-name="Simply Meditation Series"
+        >
+          Simply Meditation Series
+        </button>
+        <button
+          class="audio-btn"
+          data-action="select-song"
+          data-sound="./sounds/rainy-day-meditation.mp3"
+          data-name="Rainy Day Meditation"
+        >
+          Rainy Day Meditation
+        </button>
+        <button
+          class="audio-btn"
+          data-action="select-song"
+          data-sound="./sounds/morning-mist.mp3"
+          data-name="Morning Mist"
+        >
+          Morning Mist
+        </button>
+        <button
+          class="audio-btn"
+          data-action="select-song"
+          data-sound="./sounds/ocean-choir.mp3"
+          data-name="Ocean Choir"
+        >
+          Ocean Choir
+        </button>
+        <button
+          class="audio-btn"
+          data-action="select-song"
+          data-sound="./sounds/autumn-sky.mp3"
+          data-name="Autumn Sky"
+        >
+          Autumn Sky
+        </button>
+        <div class="duration-container">
+          <h4 class="select-title">
+            <img
+              src="./images/duration.png"
+              width="20"
+              height="20"
+              class="icon"
+            />Select your duration
+          </h4>
+          <div class="selects-container">
+            <div class="selector">
+              <select name="minutes" id="minutes">
+                <option data-value="1" data-action="set-time">1</option>
+                <option data-value="2" data-action="set-time">2</option>
+                <option data-value="3" data-action="set-time">3</option>
+                <option data-value="4" data-action="set-time">4</option>
+                <option data-value="5" data-action="set-time">5</option>
+                <option data-value="6" data-action="set-time">6</option>
+                <option data-value="7" data-action="set-time">7</option>
+                <option data-value="8" data-action="set-time">8</option>
+                <option data-value="9" data-action="set-time">9</option>
+                <option data-value="10" data-action="set-time">10</option>
+                <option data-value="11" data-action="set-time">11</option>
+                <option data-value="12" data-action="set-time">12</option>
+                <option data-value="13" data-action="set-time">13</option>
+                <option data-value="14" data-action="set-time">14</option>
+                <option data-value="15" data-action="set-time">15</option>
+              </select>
+              <label for="minutes">Minutes</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>

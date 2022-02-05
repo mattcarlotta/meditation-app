@@ -44,8 +44,8 @@ function pauseSound() {
 /**
  * Subtracts the minutes and seconds of the song duration to display a counter
  *
- * - Divides the minutes by 60 to determine if it needs a '0'
- * - Mods the seconds to determine if it has a remainder less than '10'
+ * - Divides the minutes by 60 to determine if its less than 10:00 => 09:00
+ * - Mods the seconds to determine if it has a remainder less than 00:10 => 00:09
  * - Updates the time displays content with 'xx:xx'
  */
 function setDisplayTime(time) {
@@ -61,15 +61,13 @@ function setDisplayTime(time) {
 /**
  * Subtracts the selected time from the player's time to update the time display and determines if the player needs to be reset
  *
- * - Updates the time displays content with 'xx:xx'
+ * - Updates the time display according to the leftover duration
  * - Determines if the time left is greater than 0, otherwise resets the player
  */
 audioSource.ontimeupdate = () => {
-  const { currentTime } = audioSource;
+  setDisplayTime(selectedDuration - audioSource.currentTime);
 
-  setDisplayTime(selectedDuration - currentTime);
-
-  if (currentTime + 1 > selectedDuration) {
+  if (audioSource.currentTime + 1 > selectedDuration) {
     audioSource.pause();
     audioSource.currentTime = 0;
     audioButton.innerHTML = "START";
@@ -78,7 +76,8 @@ audioSource.ontimeupdate = () => {
 
 /**
  * Listens for clicks and based upon the click 'action'...
- * - Selects a song source, enable the player buttons, and play the song
+ *
+ * - Selects a song source, enables the player buttons, and plays the song
  * - Toggles the song playing based upon its current state: paused/playing
  * - Resets the player, resets the time display, and disables player buttons
  * - Updates the time display and resets the player's time
@@ -87,6 +86,10 @@ document.addEventListener("click", (event) => {
   const { action, name, source, value } = event.target.dataset;
 
   switch (action) {
+    case "disabled": {
+      alert("Please select a sound to play...");
+      break;
+    }
     case "select-song": {
       audioSource.src = source;
       songName.innerHTML = name;
@@ -104,9 +107,10 @@ document.addEventListener("click", (event) => {
       audioSource.currentTime = 0;
       setDisplayTime(selectedDuration);
       audioButton.classList.add("disabled");
-      audioButton.dataset.action = "";
+      audioButton.dataset.action = "disabled";
+      audioButton.innerHTML = "START";
       resetButton.style.display = "none";
-      songName.innerHTML = "Please select a song...";
+      songName.innerHTML = "Please select a sound...";
       break;
     }
     case "set-time": {

@@ -113,13 +113,14 @@ document.addEventListener("click", (event) => {
       soundName.textContent = "Please select a sound...";
       break;
     }
-    case "set-time": {
-      audioSource.currentTime = 0;
-      selectedDuration = Number(value * 60);
-      setDisplayTime(selectedDuration);
-      break;
-    }
     default:
       break;
   }
 });
+
+selectMinutes.addEventListener('change', (event) => {
+  const { value } = event.target
+  audioSource.currentTime = 0
+  selectedDuration = Number(value * 60)
+  setDisplayTime(selectedDuration)
+})
